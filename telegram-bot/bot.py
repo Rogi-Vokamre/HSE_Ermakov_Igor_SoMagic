@@ -2,13 +2,13 @@ from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from dotenv import load_dotenv
 import os
+import asyncio
 
 # Загрузка переменных окружения из файла .env
 load_dotenv()
 
 # Инициализация бота и диспетчера
 bot = Bot(token=os.getenv("BOT_TOKEN"))
-dp = Dispatcher()
 dp = Dispatcher(storage=MemoryStorage())
 
 # Импорт обработчиков
@@ -30,4 +30,4 @@ async def main():
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
-    dp.run_polling(bot)
+    asyncio.run(main()) 
