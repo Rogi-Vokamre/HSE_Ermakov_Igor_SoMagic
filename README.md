@@ -14,5 +14,11 @@ Cервис доступен в двух версиях с разным функ
 # Телеграм-бот
 Чтобы найти и добавить бот "SoMagic" необходимо в поисковой строке Telegram ввести имя бота @SoMagicBot
 
-Нажмите на кнопку "Start", чтобы начать работать с ботом. 
+1. Нажмите на кнопку "Start", чтобы начать работать с ботом. 
 <img width="815" height="529" alt="Screenshot 2025-09-09 at 12 45 51" src="https://github.com/user-attachments/assets/6419eddf-55d9-4931-9481-55398a99c284" />
+
+2. Выберите русский или английский язык, чтобы продолжит работу с ботом.
+<img width="444" height="135" alt="Screenshot 2025-09-09 at 12 47 20" src="https://github.com/user-attachments/assets/7b89b8dc-602b-4264-959e-6b284ba7ca1f" />
+
+3. После выбора языка Вам будет доступно главное меню с кнопками команд.
+<img width="492" height="202" alt="Screenshot 2025-09-09 at 12 47 31" src="https://github.com/user-attachments/assets/6377fb1f-bb15-4b1e-8ebc-13f1ad7e1437" />
