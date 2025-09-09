@@ -40,4 +40,5 @@ Cервис доступен в двух версиях с разным функ
 <img width="429" height="112" alt="Screenshot 2025-09-09 at 13 19 48" src="https://github.com/user-attachments/assets/94126758-3310-4fad-a283-fa6778bc48db" />
 
 3. После ввода адреса и проведения проверки адреса появится одно из указанных ниже лого с  риском. 
+<img width="791" height="150" alt="Screenshot 2025-09-09 at 13 25 30" src="https://github.com/user-attachments/assets/b4e20faf-b8ca-470b-955c-6f544703f906" />
 
