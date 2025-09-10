@@ -1,0 +1,339 @@
+/* КОЛЬЦО ВОКРУГ ТЕКСТА */
+.ring-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 220px; /* Поднимаем вверх (можно регулировать) */
+}
+
+.rotating-ring {
+  position: absolute;
+  width: 103%;
+  height: 103%;
+  border: 2px solid black;
+  border-radius: 50%;
+  animation: wobble 6s ease-in-out infinite alternate, rotate 6s linear infinite;
+  opacity: 0.8;
+  box-sizing: border-box;
+}
+
+/* Анимация вращения — только по часовой стрелке, без остановок */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Анимация "дыхания" и искажения формы */
+@keyframes wobble {
+  0% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+  25% {
+    border-radius: 45%;
+    transform: scale(1.02) skew(2deg);
+  }
+  50% {
+    border-radius: 40%;
+    transform: scale(0.98) skew(-1deg);
+  }
+  75% {
+    border-radius: 47%;
+    transform: scale(1.01) skew(1deg);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+}
+
+.rotating-ring.outer-ring {
+  width: 105%; /* Чуть больше */
+  height: 105%;
+  top: -5%; /* Центрируем */
+  left: -5%;
+  border: 2px solid black;
+  opacity: 0.8;
+  /* Другие анимации */
+  animation: wobble-outer 6s ease-in-out infinite,
+    rotate-outer 8s linear infinite;
+}
+
+/* Анимация вращения — медленнее */
+@keyframes rotate-outer {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Анимация "искажения" — более резкая, с волной */
+@keyframes wobble-outer {
+  0% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+  33% {
+    border-radius: 42%;
+    transform: scale(1.03) skew(3deg);
+  }
+  66% {
+    border-radius: 38%;
+    transform: scale(0.97) skew(-2deg);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+}
+
+.rotating-ring.outer-ring-2 {
+  width: 110%; /* Ещё больше */
+  height: 110%;
+  top: -7%; /* Центрируем */
+  left: -7%;
+  border: 2px solid black;
+  opacity: 0.8;
+  border-style: solid;
+  animation: wobble-outer-2 10s ease-in-out infinite,
+    rotate-outer-2 10s linear infinite;
+}
+
+/* Анимация вращения — самая медленная */
+@keyframes rotate-outer-2 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Анимация "искажения" — плавное, как волна */
+@keyframes wobble-outer-2 {
+  0% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+  25% {
+    border-radius: 48%;
+    transform: scale(1.01) skew(1deg);
+  }
+  50% {
+    border-radius: 45%;
+    transform: scale(0.99) skew(-0.5deg);
+  }
+  75% {
+    border-radius: 47%;
+    transform: scale(1.005) skew(0.5deg);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+}
+
+.rotating-ring.outer-ring-3 {
+  width: 107%; /* Самое большое */
+  height: 107%;
+  top: -7%; /* Центрируем */
+  left: -7%;
+  border: 2px solid black;
+  border-style: solid;
+  opacity: 0.8;
+  animation: wobble-outer-3 12s ease-in-out infinite,
+    rotate-outer-3 12s linear infinite;
+}
+
+/* Анимация вращения — самая медленная */
+@keyframes rotate-outer-3 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Анимация "искажения" — очень плавная, почти незаметная */
+@keyframes wobble-outer-3 {
+  0% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+  50% {
+    border-radius: 49%;
+    transform: scale(1.005) skew(0.3deg);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+}
+
+.rotating-ring.outer-ring-4 {
+  width: 104%; /* Ещё больше */
+  height: 104%;
+  top: -7%; /* Центрируем */
+  left: -7%;
+  border: 2px solid black;
+  opacity: 0.8;
+  border-style: solid;
+  animation: wobble-outer-4 10s ease-in-out infinite,
+    rotate-outer-4 10s linear infinite;
+}
+
+/* Анимация вращения — самая медленная */
+@keyframes rotate-outer-4 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Анимация "искажения" — плавное, как волна */
+@keyframes wobble-outer-4 {
+  0% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+  25% {
+    border-radius: 48%;
+    transform: scale(1.01) skew(1deg);
+  }
+  50% {
+    border-radius: 45%;
+    transform: scale(0.99) skew(-0.5deg);
+  }
+  75% {
+    border-radius: 47%;
+    transform: scale(1.005) skew(0.5deg);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+}
+
+.rotating-ring.outer-ring-5 {
+  width: 101%; /* Ещё больше */
+  height: 101%;
+  top: -5%; /* Центрируем */
+  left: -5%;
+  border: 2px solid black;
+  opacity: 0.8;
+  border-style: solid;
+  animation: wobble-outer-5 10s ease-in-out infinite,
+    rotate-outer-5 10s linear infinite;
+}
+
+/* Анимация вращения — самая медленная */
+@keyframes rotate-outer-5 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Анимация "искажения" — плавное, как волна */
+@keyframes wobble-outer-5 {
+  0% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+  25% {
+    border-radius: 48%;
+    transform: scale(1.01) skew(1deg);
+  }
+  50% {
+    border-radius: 45%;
+    transform: scale(0.99) skew(-0.5deg);
+  }
+  75% {
+    border-radius: 47%;
+    transform: scale(1.005) skew(0.5deg);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+}
+
+.rotating-ring.outer-ring-6 {
+  width: 102%; /* Ещё больше */
+  height: 102%;
+  top: -6%; /* Центрируем */
+  left: -6%;
+  border: 2px solid black;
+  opacity: 0.8;
+  border-style: solid;
+  animation: wobble-outer-6 8s ease-in-out infinite,
+    rotate-outer-6 8s linear infinite;
+}
+
+/* Анимация вращения — самая медленная */
+@keyframes rotate-outer-6 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Анимация "искажения" — плавное, как волна */
+@keyframes wobble-outer-6 {
+  0% {
+    border-radius: 50%;
+    transform: scale(1) skew(0.5deg);
+  }
+  25% {
+    border-radius: 48%;
+    transform: scale(1.01) skew(1deg);
+  }
+  50% {
+    border-radius: 45%;
+    transform: scale(0.99) skew(-0.5deg);
+  }
+  75% {
+    border-radius: 47%;
+    transform: scale(1.005) skew(0.5deg);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(1) skew(0deg);
+  }
+}
+
+/* Центральный текст */
+.center-text {
+  position: absolute;
+  font-size: 56px;
+  font-weight: bold;
+  color: inherit;
+  margin: 0;
+  z-index: 10;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+@media (max-width: 500px) {
+  .ring-container {
+    width: 230px;
+    height: 230px;
+    margin-top: 230px; /* Поднимаем вверх (можно регулировать) */
+  }
+}
