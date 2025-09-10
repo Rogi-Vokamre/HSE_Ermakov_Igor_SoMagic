@@ -1,0 +1,96 @@
+.archive-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh; /* ✅ Вместо height: 100vh */
+  padding: 20px 16px;
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
+  position: relative;
+  font-family: "Arial", sans-serif;
+  width: 100%;
+}
+
+.archive-icon-container {
+  margin-top: 80px;
+  width: 100px;
+  height: 100px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.archive-title {
+  margin-top: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.archive-empty {
+  margin-top: 20px;
+  color: #777;
+  font-style: italic;
+}
+
+.archive-list {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.archive-item {
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.archive-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #000000;
+}
+
+.archive-date {
+  font-size: 14px;
+  color: #555;
+}
+
+.archive-field {
+  font-size: 15px;
+  color: #000000;
+  margin: 4px 0;
+  word-break: break-all; /* 🔹 Ломаем длинные строки (адреса) */
+  white-space: normal; /* Разрешаем переносы */
+}
+
+.export-pdf-button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background-color: #007aff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 90%;
+  max-width: 300px;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.export-pdf-button:hover {
+  background-color: #0066d0;
+}
+
+.export-pdf-button:active {
+  background-color: #0055b5;
+}
