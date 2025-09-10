@@ -1,0 +1,45 @@
+.sponsor-container {
+  position: absolute;
+  bottom: 40px; /* Немного выше логотипа */
+  left: 50%;
+  transform: translateX(-55%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: "Roboto", monospace;
+  font-size: 20px;
+  color: #000000;
+  text-align: center;
+  max-width: 80%;
+  pointer-events: none;
+}
+
+.sponsor-text {
+  pointer-events: auto;
+  font-size: 16px;
+}
+
+.sponsor-logo {
+  width: 25px;
+  height: auto;
+  pointer-events: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+  .sponsor-container {
+    bottom: 35px; /* Немного выше логотипа */
+    font-size: 20px;
+    width: 100%;
+    transform: translateX(-50%);
+  }
+
+  .sponsor-text {
+    font-size: 14px;
+  }
+
+  .sponsor-logo {
+    width: 20px;
+  }
+}
