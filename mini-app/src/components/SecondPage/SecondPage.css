@@ -1,0 +1,75 @@
+.second-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: white;
+  color: black;
+  position: relative;
+  overflow: visible;
+  font-family: "Arial", sans-serif;
+  padding-top: 0px;
+  box-sizing: border-box;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin-top: 50px;
+  position: relative;
+}
+
+.so-magic-logo {
+  width: 150%;
+  height: auto;
+  max-width: 250px;
+  object-fit: contain;
+}
+
+/* Спонсор в меню — внизу экрана */
+.sponsor-container-menu {
+  position: relative;
+  margin-top: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: "Roboto", monospace;
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
+  max-width: 150%;
+  pointer-events: none;
+}
+
+.sponsor-container-menu .sponsor-text {
+  pointer-events: auto;
+  font-size: 14px;
+}
+
+.sponsor-container-menu .sponsor-logo {
+  width: 20px;
+  height: auto;
+  pointer-events: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+  .sponsor-container-menu {
+    margin-top: 125px;
+    font-size: 14px;
+  }
+
+  .sponsor-container-menu .sponsor-text {
+    font-size: 12px;
+  }
+
+  .sponsor-container-menu .sponsor-logo {
+    width: 20px;
+  }
+}
