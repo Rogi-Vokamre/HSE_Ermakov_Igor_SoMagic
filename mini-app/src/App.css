@@ -1,29 +1,29 @@
 .App {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* ✅ Теперь контент может быть больше экрана */
   margin: 0;
   background-color: white;
   color: black;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto; /* ✅ Разрешаем скролл по вертикали */
   font-family: "Arial", sans-serif;
 }
 
-/* Кнопка Next */
+/* Стили для кнопки Next */
 .next-button {
   position: absolute;
-  bottom: 50px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-55%);
-  width: 80%; 
-  max-width: 300px;
-  padding: 14px 20px; 
+  width: 80%; /* Ширина 80% от экрана */
+  max-width: 300px; /* Максимальная ширина — 300px */
+  padding: 14px 20px; /* Можно немного увеличить вертикальные отступы */
   font-size: 18px;
   font-weight: bold;
   color: white;
-  background-color: #007aff;
+  background-color: #007aff; /* Telegram-синий */
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -39,21 +39,16 @@
   background-color: #0055b5;
 }
 
-/* Адаптивность под мобильную версию */
+/* Адаптивность */
 @media (max-width: 500px) {
-  .ring-container {
-    width: 230px;
-    height: 230px;
-    margin-top: -100px; 
-  }
-
   .center-text {
     font-size: 36px;
   }
 
   .next-button {
-    width: 65%; 
-    max-width: 200px; 
+    bottom: 70px;
+    width: 65%; /* Ширина 80% от экрана */
+    max-width: 200px; /* Максимальная ширина — 300px */
     font-size: 16px;
   }
 
