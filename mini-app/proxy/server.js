@@ -22,7 +22,6 @@ const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, "http://localhost");
     const pathParts = url.pathname.split("/").filter(Boolean);
 
-    // Поддерживаем только: /address/{identifier}/risks/{currencyTag}
     if (pathParts[0] === "address" && pathParts.length === 3) {
       const identifier = pathParts[1];
       const currencyTag = pathParts[2];
@@ -49,7 +48,6 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-// Порт, на котором запустится прокси
 const PORT = 3001;
 
 server.listen(PORT, "127.0.0.1", () => {
