@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import { LuScanSearch } from "react-icons/lu";
 import "./ChecksPage.css";
 
-// Токен API от Шард
-// const API_TOKEN = [HIDDEN FOR SECURITY REASONS];
-// const API_BASE = "https://shard.ru/external/api";
-const PROXY_URL = [HIDDEN FOR SECURITY REASONS];
+const PROXY_URL = [HIDDEN FOR SECURITY REASONS] /
 
-function ChecksPage({ onBack, saveToArchive }) {
+function ChecksPage({ onBack, saveToArchive, t }) {
   const [showNetworks, setShowNetworks] = useState(false);
   const [selectedNetwork, setSelectedNetwork] = useState(null);
   const [walletAddress, setWalletAddress] = useState("");
@@ -18,10 +15,8 @@ function ChecksPage({ onBack, saveToArchive }) {
   useEffect(() => {
     if (window.Telegram?.WebApp) {
       const backButton = window.Telegram.WebApp.BackButton;
-
       backButton.show();
       backButton.onClick(onBack);
-
       return () => {
         backButton.hide();
         backButton.offClick();
@@ -68,7 +63,7 @@ function ChecksPage({ onBack, saveToArchive }) {
 
   const handleCheck = async () => {
     if (!walletAddress.trim()) {
-      setError("Введите адрес кошелька");
+      setError(t("enterWalletAddress"));
       return;
     }
     if (!selectedNetwork) return;
@@ -86,13 +81,13 @@ function ChecksPage({ onBack, saveToArchive }) {
       const response = await fetch(proxyUrl);
 
       if (response.status === 400) {
-        setError("Неверный формат адреса или сеть.");
+        setError(t("errorInvalidAddress"));
       } else if (response.status === 403) {
-        setError("Ошибка авторизации. Обратитесь к разработчику.");
+        setError(t("errorAuth"));
       } else if (response.status === 503) {
-        setError("Сервис временно недоступен. Попробуйте позже.");
+        setError(t("errorServiceUnavailable"));
       } else if (!response.ok) {
-        setError(`Ошибка: ${response.status}`);
+        setError(t("errorDefault").replace("{{status}}", response.status));
       } else {
         const data = await response.json();
         setResult({
@@ -105,9 +100,7 @@ function ChecksPage({ onBack, saveToArchive }) {
       }
     } catch (err) {
       console.error("Ошибка запроса к прокси:", err);
-      setError(
-        "Не удалось подключиться к серверу. Убедитесь, что прокси запущен: tuna http 3001"
-      );
+      setError(t("errorNoConnection"));
     } finally {
       setLoading(false);
     }
@@ -122,30 +115,26 @@ function ChecksPage({ onBack, saveToArchive }) {
 
   return (
     <div className="checks-page">
-      {/* Иконка */}
       <div className="checks-icon-container">
         <LuScanSearch size={70} color="#000000ff" />
       </div>
 
-      {/* Заголовок */}
-      <h1 className="checks-title">Проверки</h1>
+      <h1 className="checks-title">{t("checks")}</h1>
 
-      {/* Кнопка */}
       <button
         className="check-address-button"
         onClick={selectedNetwork ? handleCheck : toggleNetworks}
         disabled={loading}
       >
         {loading
-          ? "Проверка..."
+          ? t("checking")
           : selectedNetwork
-          ? "Проверить адрес кошелька"
+          ? t("checkWalletAddress")
           : showNetworks
-          ? "Выберите сеть"
-          : "Проверить адрес"}
+          ? t("selectNetwork")
+          : t("checkAddress")}
       </button>
 
-      {/* Кнопки сетей */}
       {!selectedNetwork && showNetworks && (
         <div className="network-buttons">
           <button
@@ -169,10 +158,9 @@ function ChecksPage({ onBack, saveToArchive }) {
         </div>
       )}
 
-      {/* Поле ввода */}
       {selectedNetwork && !result && (
         <div className="input-section">
-          <p className="input-label">Введите адрес кошелька</p>
+          <p className="input-label">{t("enterWalletAddress")}</p>
           <input
             type="text"
             className="wallet-input"
@@ -190,10 +178,8 @@ function ChecksPage({ onBack, saveToArchive }) {
         </div>
       )}
 
-      {/* Ошибка */}
       {error && <div className="error-message">{error}</div>}
 
-      {/* Результат */}
       {result && (
         <div
           className="result-section"
@@ -204,36 +190,36 @@ function ChecksPage({ onBack, saveToArchive }) {
             transition: "background-color 0.3s ease",
           }}
         >
-          <h2 className="result-title">Результат проверки</h2>
+          <h2 className="result-title">
+            {t("resultTitle") || "Результат проверки"}
+          </h2>
 
-          {/* Сеть и адрес */}
           <div className="result-meta">
             <div className="result-item">
-              <strong>Сеть:</strong> {result.meta.network}
+              <strong>{t("network")}:</strong> {result.meta.network}
             </div>
             <div className="result-item">
-              <strong>Адрес:</strong>{" "}
+              <strong>{t("address")}:</strong>{" "}
               <span className="result-address">{result.meta.address}</span>
             </div>
           </div>
 
           <hr className="divider" />
 
-          {/* Основной риск */}
           <div className="result-item">
-            <strong>Риск-оценка:</strong>{" "}
+            <strong>{t("riskScore")}:</strong>{" "}
             <span className="risk-score">{result.risk_score} из 100</span>
           </div>
 
           {result.balance !== undefined && (
             <div className="result-item">
-              <strong>Баланс:</strong> {result.balance}
+              <strong>{t("balance")}:</strong> {result.balance}
             </div>
           )}
 
           {result.report_risk?.risk_tags?.length > 0 && (
             <div className="result-item">
-              <strong>Основные риски:</strong>
+              <strong>{t("mainRisks")}:</strong>
               <div className="tags">
                 {result.report_risk.risk_tags.map((tag, i) => (
                   <span key={i} className="tag tag-danger">
@@ -246,7 +232,7 @@ function ChecksPage({ onBack, saveToArchive }) {
 
           {result.reputation_risk?.risk_tags?.length > 0 && (
             <div className="result-item">
-              <strong>Источники средств:</strong>
+              <strong>{t("fundSources")}:</strong>
               <div className="tags">
                 {result.reputation_risk.risk_tags.map((tag, i) => (
                   <span key={i} className="tag tag-warning">
@@ -259,7 +245,7 @@ function ChecksPage({ onBack, saveToArchive }) {
 
           {result.coins_risk?.risk_tags?.length > 0 && (
             <div className="result-item">
-              <strong>Риски по активам:</strong>
+              <strong>{t("assetRisks")}:</strong>
               <div className="tags">
                 {result.coins_risk.risk_tags.map((tag, i) => (
                   <span key={i} className="tag tag-info">
@@ -272,7 +258,7 @@ function ChecksPage({ onBack, saveToArchive }) {
 
           {Array.isArray(result.categories) && result.categories.length > 0 && (
             <div className="result-item">
-              <strong>Категории:</strong>
+              <strong>{t("categories")}:</strong>
               <div className="tags">
                 {result.categories.map((cat, i) => (
                   <span key={i} className="tag tag-black">
@@ -285,7 +271,6 @@ function ChecksPage({ onBack, saveToArchive }) {
         </div>
       )}
 
-      {/* Кнопка "Новая проверка" — ВНЕ контейнера результата */}
       {result && (
         <button
           className="back-to-check-button"
@@ -294,24 +279,22 @@ function ChecksPage({ onBack, saveToArchive }) {
             setSelectedNetwork(null);
             setWalletAddress("");
             setError("");
-            setShowNetworks(true); // ← Опционально: сразу показать выбор сети
+            setShowNetworks(true);
           }}
         >
-          Новая проверка
+          {t("newCheck")}
         </button>
       )}
 
-      {/* Кнопка "Сохранить результат" */}
       {result && !result.saved && (
         <button
           className="save-result-button"
           onClick={() => {
             saveToArchive(result);
-            // Можешь добавить метку, что сохранено
             setResult({ ...result, saved: true });
           }}
         >
-          Сохранить результат
+          {t("saveResult")}
         </button>
       )}
     </div>
@@ -319,3 +302,4 @@ function ChecksPage({ onBack, saveToArchive }) {
 }
 
 export default ChecksPage;
+
