@@ -6,39 +6,40 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { HiMiniLanguage } from "react-icons/hi2";
 import { IoArchiveOutline } from "react-icons/io5";
 
-const menuItems = {
-  commands: [
-    {
-      icon: <LuScanSearch size={30} color="#000000ff" />,
-      text: "Проверки",
-      action: "checks",
-    },
-    {
-      icon: <IoArchiveOutline size={30} color="#000000ff" />,
-      text: "Архив проверок",
-      action: "archive",
-    },
-    {
-      icon: <CgProfile size={30} color="#000000ff" />,
-      text: "Профиль",
-      action: "profile",
-    },
-    {
-      icon: <IoMdInformationCircleOutline size={30} color="#000000ff" />,
-      text: "Гайд",
-      action: "guide",
-    },
-  ],
-  settings: [
-    {
-      icon: <HiMiniLanguage size={30} color="#000000ff" />,
-      text: "Языки",
-      action: "language",
-    },
-  ],
-};
+function Menu({ type, onNavigate, t, language, setLanguage }) {
+  const menuItems = {
+    commands: [
+      {
+        icon: <LuScanSearch size={30} color="#000000ff" />,
+        text: t("checks"),
+        action: "checks",
+      },
+      {
+        icon: <IoArchiveOutline size={30} color="#000000ff" />,
+        text: t("archive"),
+        action: "archive",
+      },
+      {
+        icon: <CgProfile size={30} color="#000000ff" />,
+        text: t("profile"),
+        action: "profile",
+      },
+      {
+        icon: <IoMdInformationCircleOutline size={30} color="#000000ff" />,
+        text: t("guide"),
+        action: "guide",
+      },
+    ],
+    settings: [
+      {
+        icon: <HiMiniLanguage size={30} color="#000000ff" />,
+        text: t("languageToggle"),
+        action: "language",
+        isToggle: true,
+      },
+    ],
+  };
 
-function Menu({ type, onNavigate }) {
   const items = menuItems[type] || [];
 
   return (
@@ -52,19 +53,10 @@ function Menu({ type, onNavigate }) {
             item.disabled
               ? (e) => e.preventDefault()
               : () => {
-                  if (item.action === "profile") {
-                    onNavigate("profile");
-                  } else if (item.action === "checks") {
-                    onNavigate("checks");
-                  } else if (item.action === "guide") {
-                    onNavigate("guide");
-                  } else if (item.action === "archive") {
-                    onNavigate("archive");
-                  } else if (item.action === "language") {
-                    // Можно добавить переход или всплывающее окно
-                    console.log("Переход к Языки");
+                  if (item.action === "language" && item.isToggle) {
+                    setLanguage(language === "ru" ? "en" : "ru");
                   } else {
-                    console.log(`Переход к ${item.action}`);
+                    onNavigate(item.action);
                   }
                 }
           }
