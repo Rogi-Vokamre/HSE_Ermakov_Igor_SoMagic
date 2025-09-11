@@ -7,15 +7,12 @@ import {
 } from "react-icons/tb";
 import "./GuidePage.css";
 
-function GuidePage({ onBack }) {
+function GuidePage({ onBack, t }) {
   useEffect(() => {
     if (window.Telegram?.WebApp) {
       const backButton = window.Telegram.WebApp.BackButton;
-
       backButton.show();
       backButton.onClick(onBack);
-
-      // Очистка при выходе
       return () => {
         backButton.hide();
         backButton.offClick();
@@ -25,55 +22,42 @@ function GuidePage({ onBack }) {
 
   return (
     <div className="guide-page">
-      {/* Иконка гайда */}
       <div className="guide-icon-container">
         <IoMdInformationCircleOutline size={80} color="#000000ff" />
       </div>
 
-      {/* Заголовок */}
-      <h1 className="guide-title">Гайд</h1>
+      <h1 className="guide-title">{t("guideTitle")}</h1>
 
-      {/* Контейнер с разделами */}
       <div className="guide-container">
-        {/* Пункт 1 */}
         <div className="guide-item">
           <div className="guide-item-icon">
             <TbCircleNumber1 size={30} color="#000000ff" />
           </div>
-          <div className="guide-item-text">
-            В разделе "Проверки" можно проверять криптовалютные адреса.
-            Достаточно указать номер кошелька, затем Вы получите полный отчет.
-          </div>
+          <div className="guide-item-text">{t("guideStep1")}</div>
         </div>
 
-        {/* Пункт 2 */}
         <div className="guide-item">
           <div className="guide-item-icon">
             <TbCircleNumber2 size={30} color="#000000ff" />
           </div>
-          <div className="guide-item-text">
-            В разделе "Профиль" указан твой тарифный план, количество доступных
-            проверок.
-          </div>
+          <div className="guide-item-text">{t("guideStep2")}</div>
         </div>
 
-        {/* Пункт 3 */}
         <div className="guide-item">
           <div className="guide-item-icon">
             <TbCircleNumber3 size={30} color="#000000ff" />
           </div>
           <div className="guide-item-text">
-            С пошаговой инструкцией по использованию приложения можно
-            ознакомиться на нашей странице в{" "}
+            {t("guideStep3Part1")}
             <a
               href="https://github.com/Rogi-Vokamre/HSE_Ermakov_Igor_SoMagic/tree/main"
               target="_blank"
               rel="noopener noreferrer"
               className="github-link"
             >
-              GitHub
+              {t("guideStep3Part2")}
             </a>
-            .
+            {t("guideStep3Part3")}
           </div>
         </div>
       </div>
