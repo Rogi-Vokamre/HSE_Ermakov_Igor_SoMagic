@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { IoArchiveOutline } from "react-icons/io5"; // Убедись, что верный импорт
+import { IoArchiveOutline } from "react-icons/io5";
 import "./ArchivePage.css";
 
-function ArchivePage({ onBack, archive }) {
+function ArchivePage({ onBack, archive, t }) {
   useEffect(() => {
     if (window.Telegram?.WebApp) {
       const backButton = window.Telegram.WebApp.BackButton;
@@ -15,7 +15,6 @@ function ArchivePage({ onBack, archive }) {
     }
   }, [onBack]);
 
-  // Функция копирования отчёта в буфер обмена
   const copyReportToClipboard = () => {
     const report = [
       "АРХИВ ПРОВЕРОК SoMagic",
@@ -38,22 +37,19 @@ function ArchivePage({ onBack, archive }) {
     navigator.clipboard
       .writeText(report)
       .then(() => {
-        alert(
-          "✅ Отчёт скопирован в буфер обмена!\nВставьте его в Telegram, Google Docs или Notes."
-        );
+        alert(t("reportCopied"));
       })
       .catch((err) => {
         console.error("Ошибка копирования: ", err);
-        alert("Не удалось скопировать. Попробуйте вручную.");
+        alert(t("reportCopyFailed"));
       });
   };
 
-  // Определяем цвет фона по уровню риска
   const getRiskBgColor = (riskScore) => {
-    if (riskScore >= 80) return "#ffebee"; // светло-алый
-    if (riskScore >= 60) return "#fff3e0"; // светло-оранжевый
-    if (riskScore >= 30) return "#fffde7"; // светло-жёлтый
-    return "#f3fde8"; // светло-зелёный
+    if (riskScore >= 80) return "#ffebee";
+    if (riskScore >= 60) return "#fff3e0";
+    if (riskScore >= 30) return "#fffde7";
+    return "#f3fde8";
   };
 
   if (!archive || archive.length === 0) {
@@ -62,23 +58,20 @@ function ArchivePage({ onBack, archive }) {
         <div className="archive-icon-container">
           <IoArchiveOutline size={80} color="#000000ff" />
         </div>
-        <h1 className="archive-title">Архив проверок</h1>
-        <p className="archive-empty">Нет сохранённых результатов</p>
+        <h1 className="archive-title">{t("archiveTitle")}</h1>
+        <p className="archive-empty">{t("archiveEmpty")}</p>
       </div>
     );
   }
 
   return (
     <div className="archive-page">
-      {/* Иконка */}
       <div className="archive-icon-container">
         <IoArchiveOutline size={80} color="#000000ff" />
       </div>
 
-      {/* Заголовок */}
-      <h1 className="archive-title">Архив проверок</h1>
+      <h1 className="archive-title">{t("archiveTitle")}</h1>
 
-      {/* Список записей */}
       <div className="archive-list">
         {archive.map((item) => (
           <div
@@ -95,24 +88,25 @@ function ArchivePage({ onBack, archive }) {
             </div>
 
             <div className="archive-field">
-              <strong>Сеть:</strong> {item.meta.network}
+              <strong>{t("network")}:</strong> {item.meta.network}
             </div>
             <div className="archive-field">
-              <strong>Адрес:</strong> {item.meta.address}
+              <strong>{t("address")}:</strong> {item.meta.address}
             </div>
             <div className="archive-field">
-              <strong>Риск:</strong> {Math.round(item.risk_score)} из 100
+              <strong>{t("riskScore")}:</strong> {Math.round(item.risk_score)}{" "}
+              из 100
             </div>
 
             {item.balance !== undefined && (
               <div className="archive-field">
-                <strong>Баланс:</strong> {item.balance}
+                <strong>{t("balance")}:</strong> {item.balance}
               </div>
             )}
 
             {item.report_risk?.risk_tags?.length > 0 && (
               <div className="archive-field">
-                <strong>Риски:</strong>{" "}
+                <strong>{t("mainRisks")}:</strong>{" "}
                 {item.report_risk.risk_tags.map((t) => t.tag).join(", ")}
               </div>
             )}
@@ -120,9 +114,8 @@ function ArchivePage({ onBack, archive }) {
         ))}
       </div>
 
-      {/* Кнопка копирования */}
       <button className="export-pdf-button" onClick={copyReportToClipboard}>
-        Скопировать отчёт
+        {t("copyReport")}
       </button>
     </div>
   );
