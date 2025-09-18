@@ -55,6 +55,12 @@ TEXT_ERROR_API = {
     "english": "❌ API request failed. Please check the address or try again later."
 }
 
+ADDRESS_EXAMPLES = {
+    "btc-btc": "bc1qqlqhu85am9ldqsavlw79kd2faq0xw2kr7h5g2g",
+    "eth-eth": "0x21a31ee1afc51d94c2efccaa2092ad1028285549",
+    "trx-trx": "TCFD8N3vM5b4Gr5f1kkajQsodRVNyyAq1d",
+}
+
 @router.callback_query(F.data.startswith("check_"))
 async def process_check(query: CallbackQuery, state: FSMContext):
     lang_code = query.data.split("_")[1]
@@ -76,7 +82,17 @@ async def process_currency_selection(query: CallbackQuery, state: FSMContext):
     language = data.get("selected_language", "russian")
 
     await state.update_data(currency_tag=currency_tag)
-    text = TEXT_ASK_ADDRESS[language]
+
+    example_address = ADDRESS_EXAMPLES.get(currency_tag, "N/A")
+
+    text = (
+        f"📬 Введите адрес кошелька:\n"
+        f"Пример: {example_address}"
+    ) if language == "russian" else (
+        f"📬 Enter the wallet address:\n"
+        f"Example: {example_address}"
+    )
+
     keyboard = create_check_back_keyboard(language)
 
     sent = await query.message.answer(text, reply_markup=keyboard)
