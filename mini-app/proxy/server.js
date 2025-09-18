@@ -7,7 +7,7 @@ const API_BASE = "https://shard.ru/external/api";
 
 const server = http.createServer(async (req, res) => {
   try {
-    // Разрешаем CORS
+    // Разрешение CORS
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -18,7 +18,7 @@ const server = http.createServer(async (req, res) => {
       return res.end();
     }
 
-    // Парсим URL
+    // Парсинг URL
     const url = new URL(req.url, "http://localhost");
     const pathParts = url.pathname.split("/").filter(Boolean);
 
@@ -50,7 +50,7 @@ const server = http.createServer(async (req, res) => {
 
 const PORT = 3001;
 
-server.listen(PORT, "127.0.0.1", () => {
+server.listen(PORT, "[HIDDEN FOR SECURITY REASONS]", () => {
   console.log(`✅ Прокси-сервер запущен на http://localhost:${PORT}`);
   console.log(`👉 Запусти: tuna http ${PORT}`);
 });
